@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 
 import App from './App.jsx';
@@ -12,12 +12,12 @@ import GerenciamentoFornecedores from './pages/GerenciamentoFornecedores.jsx';
 import Relatorios from './pages/Relatorios.jsx';
 import Configuracoes from './pages/Configuracoes.jsx';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
     children: [
-      { index: true, element: <Dashboard /> },
+      { path: "/", element: <Dashboard /> },
       { path: "nova-receita", element: <NovaReceita /> },
       { path: "nova-despesa", element: <NovaDespesa /> },
       { path: "clientes", element: <GerenciamentoClientes /> },
@@ -26,10 +26,7 @@ const router = createBrowserRouter([
       { path: "configuracoes", element: <Configuracoes /> },
     ],
   },
-], {
-    // Esta linha diz ao roteador para funcionar na subpasta correta
-    basename: "/meu-app-financeiro/",
-});
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
